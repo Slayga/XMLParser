@@ -158,37 +158,38 @@ class XMLParser:
             print("\t" * indent + f"- {data}")
 
 
-# Example XML string
-data = """<root xmlns="http://example.com">
-    <header>
-        <ntitle>Sample Title</ntitle>
-        <date>2025-03-13</date>
-        <meta>
-            <author>John Doe</author>
-            <version>1.0</version>
-        </meta>
-    </header>
-    <values>
-        <price>100</price>
-        <quantity>5</quantity>
-        <details>
-            <Name>Discount Details</Name>
-            <currency>USD</currency>
-            <discount>10%</discount>
-        </details>
-        <extra>
-            <Name>Special Offer</Name>
-            <Value>50% Off</Value>
-        </extra>
-    </values>
-</root>"""
+if __name__ == "__main__":
+    # Example XML string
+    data = """<root xmlns="http://example.com">
+        <header>
+            <ntitle>Sample Title</ntitle>
+            <date>2025-03-13</date>
+            <meta>
+                <author>John Doe</author>
+                <version>1.0</version>
+            </meta>
+        </header>
+        <values>
+            <price>100</price>
+            <quantity>5</quantity>
+            <details>
+                <Name>Discount Details</Name>
+                <currency>USD</currency>
+                <discount>10%</discount>
+            </details>
+            <extra>
+                <Name>Special Offer</Name>
+                <Value>50% Off</Value>
+            </extra>
+        </values>
+    </root>"""
 
-# Using the class
-parser = XMLParser(data, parent_elements=["header", "values"])
-parser.remove_keys(["meta"])
-parser.flatten_nested_keys()
-parser.rename_keys(
-    {"price": "cost", "quantity": "amount", "discount": "rebate"},
-    casing=str.capitalize,
-)
-parser.print_pretty_dict()
+    # Using the class
+    parser = XMLParser(data, parent_elements=["header", "values"])
+    parser.remove_keys(["meta"])
+    parser.flatten_nested_keys()
+    parser.rename_keys(
+        {"price": "cost", "quantity": "amount", "discount": "rebate"},
+        casing=str.capitalize,
+    )
+    parser.print_pretty_dict()
